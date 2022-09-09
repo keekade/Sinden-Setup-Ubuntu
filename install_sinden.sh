@@ -75,12 +75,10 @@ function try_fix() {
       echo "--------------------------------------------------------------------------------"
       echo "| Success the Sinden software is installed correctly"
       echo "--------------------------------------------------------------------------------"
-      return 0
     else
       echo "--------------------------------------------------------------------------------"
       echo "| There is still an issue running the Sinden Software sorry!"
       echo "--------------------------------------------------------------------------------"
-      return 1
     fi
 }
 
@@ -106,6 +104,10 @@ function run_sinden_software() {
   fi
 }
 
+function clean() {
+  rm -rf "/home/${USER}/sinden-setup"
+}
+
 function install() {
   killall mono
   
@@ -116,6 +118,8 @@ function install() {
   extract_sinden_software "8"
   copy_lightgun_folder "8"
   run_sinden_software
+
+  clean
 }
 
 install
